@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.full.css"/>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <form id="scrap-form" role="form">
+                <div class="form-group">
+                    <label for="societe-url">Lien societe.com</label>
+                    <input id="societe-url" class="form-control" type="url" placeholder="http://www.societe.com/..."
+                           required pattern="^https?://www.societe.com/.*$">
+                </div>
+                <div class="form-group">
+                    <label for="infogreffe-url">Lien infogreffe.fr</label>
+                    <input id="infogreffe-url" class="form-control" type="url"
+                           placeholder="https://www.infogreffe.fr/..."
+                           required pattern="^https?://www.infogreffe.fr/.*$">
+                </div>
+                <div class="form-group">
+                    <button id="scrap-button" type="submit" class="btn btn-primary" disabled="disabled">Scraper !</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div id="hot"></div>
+        </div>
+    </div>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/bootstrap-validator/dist/validator.js"></script>
+<script src="bower_components/handsontable/dist/handsontable.full.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="app-config.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var hotContainer = document.getElementById('hot');
+        var allResults = [];
+        var hot = null;
+
+        $('#scrap-form').validator().on('validate.bs.validator', function (e) {
+            $('#scrap-button').removeAttr('disabled');
+        });
+
+        $('#scrap-button').click(function () {
+            $('#scrap-button').attr('disabled', 'disabled');
+            $('#scrap-button').text('Scraping en cours')
+
+            $.post(ROOT_URL + "/scrap", {
+                'societe': $('#societe-url').val(),
+                'infogreffe': $('#infogreffe-url').val()
+            }).done(function (res) {
+                $('#scrap-button').removeAttr('disabled');
+                $('#scrap-button').text('Scraper !');
+
+                allResults.push(res);
+
+                if (!hot) {
+                    var header = [];
+                    var row = [];
+
+                    _.forEach(res, function (n, key) {
+                        header.push(key);
+                        row.push(n);
+                    });
+
+                    var data = [];
+                    data.push(header);
+                    data.push(row);
+                    hot = new Handsontable(
+                            hotContainer,
+                            {
+                                data: data,
+                                minSpareRows: 1,
+                                colHeaders: true,
+                                contextMenu: true
+                            });
+                } else {
+
+                }
+            }).fail(function () {
+
+            });
+        })
+
+    });
+</script>
+
+</body>
+</html>

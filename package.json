@@ -1,0 +1,32 @@
+{
+  "name": "scraping-app",
+  "version": "1.0.0",
+  "description": "A small express.js app to scrap contents from infogreffe.fr and societe.com and rendeer it in a handsontable view",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devauxbr/scraping-app.git"
+  },
+  "keywords": [
+    "scrap"
+  ],
+  "author": "Bruno Devaux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devauxbr/scraping-app/issues"
+  },
+  "homepage": "https://github.com/devauxbr/scraping-app",
+  "dependencies": {
+    "body-parser": "^1.13.0",
+    "ejs": "^2.3.1",
+    "express": "^4.12.4",
+    "iconv": "^2.1.8",
+    "jsdom": "^3.1.2",
+    "lodash": "^3.9.3",
+    "moment": "^2.10.3",
+    "request": "^2.57.0"
+  }
+}

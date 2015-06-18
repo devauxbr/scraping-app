@@ -1,0 +1,28 @@
+{
+  "name": "scraping-app",
+  "version": "1.0.0",
+  "homepage": "https://github.com/devauxbr/scraping-app",
+  "authors": [
+    "Bruno Devaux <devaux.br@gmail.com>"
+  ],
+  "description": "A small express.js app to scrap contents from infogreffe.fr and societe.com and rendeer it in a handsontable view",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "handsontable": "~0.14.1",
+    "lodash": "~3.9.3",
+    "bootstrap-validator": "~0.8.1"
+  }
+}
