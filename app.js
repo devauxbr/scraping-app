@@ -12,8 +12,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
 
+/**
+ * Configure request's proxy using ENV var: useful if your machine is behind a corporate proxy
+ * Uncomment and configure if needed
+  */
 
-request = request.defaults(requestProxy);
+/*request = request.defaults({
+    proxy: 'http://proxyweb.utc.fr:3128'
+ );*/
 
 
 app.post('/scrap', function (req, res) {

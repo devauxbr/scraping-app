@@ -42,10 +42,13 @@
 <script src="bower_components/bootstrap-validator/dist/validator.js"></script>
 <script src="bower_components/handsontable/dist/handsontable.full.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
-<script src="app-config.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
+        /** Default root url if your run "node app.js" on your local machine
+         * You must change this url to your server Node app url if you run "node app.js" on a remote machine
+         */
+        var ROOT_URL = "http://localhost:3000";
 
         var hotContainer = document.getElementById('hot');
         var allResults = [];
@@ -89,7 +92,7 @@
                                 contextMenu: true
                             });
                 } else {
-
+                    // TODO : handle new data and add it to handsontable view
                 }
             }).fail(function () {
 
