@@ -60,7 +60,11 @@ Access the app from your browser :
 - Makes your index.html accessible from the web, with an [Apache Server](http://httpd.apache.org/) for example.
 - In `index.html` change the value of `ROOT_URL` on **line 51** from `http://localhost:3000` to `http://[YOUR_SERVER_IP]:3000`.
 - Access the app from your browser !
-- If you want to keep the server running, instead of `node app.js`, run :
+- If you want to keep the server running install forever :
+```sh
+$ forever start app.js
+```
+Then instead of `node app.js`, run :
 ```sh
 $ forever start app.js
 ```
