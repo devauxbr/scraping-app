@@ -19,33 +19,33 @@ After processing all the available information will appear in a Handsontable vie
 
 ### How does it work ?
 
-The interface (index.html) is a static page accessible from anything you want and containing javascript code making AJAX call to the server.
+The interface (index.html) is a static page that you can access from anywhere you want to, and containing javascript code making AJAX call to the server.
 
-The server is a [http://expressjs.com/](express.js) app that retrieve the URL from the front-end client, and use [request](https://www.npmjs.com/package/request), [https://www.npmjs.com/package/jsdom](jsdom) and [jQuery](https://jquery.com/) to load the pages and scrap the relevant content.
-It then sends it back to the interface that display it in a [Handsontable](http://handsontable.com/) view.
+The server is a [express.js](http://expressjs.com/) app that retrieve the two URLs from the front-end client, and use [request](https://www.npmjs.com/package/request), [jsdom](https://www.npmjs.com/package/jsdom) and [jQuery](https://jquery.com/) to load the pages and scrap the relevant content.
+It then sends it back to the interface which displays it in a [Handsontable](http://handsontable.com/) view.
 
 ### Install locally
 
-Download and install Node.js
+- Download and install Node.js
 
-Install Bower :
+- Install Bower :
 ```sh
 $ npm install -g bower
 ```
 
-Clone the repository :
+- Clone the repository :
 ```sh
 $ git clone git@github.com:devauxbr/scraping-app.git
 $ cd scraping-app
 ```
 
-Install Node.js and Bower dependencies :
+- Install Node.js and Bower dependencies :
 ```sh
 $ npm install
 $ bower install
 ```
 
-Run the local server :
+- Run the local server :
 ```sh
 $ node app.js
 ```
