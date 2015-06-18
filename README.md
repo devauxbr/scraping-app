@@ -64,7 +64,7 @@ Access the app from your browser :
 
 If you want to keep the server running, install [forever](https://github.com/foreverjs/forever) :
 ```sh
-$ forever start app.js
+$ npm install -g forever
 ```
 Then instead of `node app.js`, run :
 ```sh
