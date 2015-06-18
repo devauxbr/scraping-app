@@ -13,7 +13,8 @@ You can try the app online at this address :
 
 ### How do I use it ?
 
-Simply paste the URL of the company which you want to get information (both from societe.com and infogreffe.fr) and click "Scrap !".
+Simply paste the URL of the company which you want to get information (both from _societe.com_ and _infogreffe.fr_) and click "**Scrap !**".
+
 After processing all the available information will appear in a Handsontable view, allowing you to select the relevant information and copy it to any other program (likely to be Excel, Google Sheet or Open/LibreOffice Calc)
 
 ### How does it work ?
