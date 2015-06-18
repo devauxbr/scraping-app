@@ -51,8 +51,7 @@ $ bower install
 $ node app.js
 ```
 
-Access the app from your browser :
-[http://localhost:3000/](http://localhost:3000/)
+Open _index.html_ from your disk with your brother.
 
 ### Install on a server
 
