@@ -21,7 +21,8 @@ After processing all the available information will appear in a Handsontable vie
 
 The interface (index.html) is a static page that you can access from anywhere you want to, and containing javascript code making AJAX call to the server.
 
-The server is a [express.js](http://expressjs.com/) app that retrieve the two URLs from the front-end client, and use [request](https://www.npmjs.com/package/request), [jsdom](https://www.npmjs.com/package/jsdom) and [jQuery](https://jquery.com/) to load the pages and scrap the relevant content.
+The server is a [express.js](http://expressjs.com/) app that retrieves the two URLs from the front-end client, and uses [request](https://www.npmjs.com/package/request), [jsdom](https://www.npmjs.com/package/jsdom) and [jQuery](https://jquery.com/) to load the pages and scrap the relevant content.
+
 It then sends it back to the interface which displays it in a [Handsontable](http://handsontable.com/) view.
 
 ### Install locally
