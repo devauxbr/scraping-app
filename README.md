@@ -62,7 +62,7 @@ Access the app from your browser :
 - Access the app from your browser !
 
 
-If you want to keep the server running install forever :
+If you want to keep the server running, install [forever](https://github.com/foreverjs/forever) :
 ```sh
 $ forever start app.js
 ```
