@@ -6,11 +6,13 @@ var express = require('express'),
     moment = require('moment'),
     iconv = require('iconv');
 
+var JQUERY_PATH = __dirname + '/public/bower_components/jquery/dist/jquery.min.js'
+
 var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
-
+app.use(express.static('public'));
 
 /**
  * Configure request's proxy using ENV var: useful if your machine is behind a corporate proxy
@@ -52,7 +54,7 @@ app.post('/scrap', function (req, res) {
         //also tell jsdom to attach jQuery in the scripts and loaded from jQuery.com
 
         jsdom.env(
-            utf8String, [__dirname + '/bower_components/jquery/dist/jquery.min.js'],
+            utf8String, [JQUERY_PATH],
             function (err, window) {
                 var items = {};
                 //Use jQuery just as in a regular HTML page
@@ -109,7 +111,7 @@ app.post('/scrap', function (req, res) {
                 node.lastUpdated = moment(items["Date de dernière mise à jour"].split(" ")[0], "DD-MM-YYYY").format("YYYY-MM-DD");
                 node.trancheEmployes = (items["Tranche d'effectif"]) ? (parseInt(items["Tranche d'effectif"].split(" ")[0]) || 0) : 0;
                 node.capitalSocial = (items["Capital social"]) ? items["Capital social"].split(" ")[0].split(",")[0] : '';
-                //console.log(node.name + " : process request done");
+                console.log("societe.com done");
 
                 request({
                     uri: req.body.infogreffe,
@@ -128,7 +130,7 @@ app.post('/scrap', function (req, res) {
                     //console.log(body);
 
                     jsdom.env(
-                        body, [__dirname + '/bower_components/jquery/dist/jquery.min.js'],
+                        body, [JQUERY_PATH],
                         function (err, window) {
                             //Use jQuery just as in a regular HTML page
                             var $ = window.jQuery;
@@ -203,6 +205,7 @@ app.post('/scrap', function (req, res) {
 
                                 }
                             });
+                            console.log("infogreffe done");
 
                             res.send(node);
                         }

@@ -24,5 +24,6 @@
     "handsontable": "~0.14.1",
     "lodash": "~3.9.3",
     "bootstrap-validator": "~0.8.1"
-  }
+  },
+  "directory": "public"
 }

@@ -45,10 +45,6 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        /** Default root url if your run "node app.js" on your local machine
-         * You must change this url to your server Node app url if you run "node app.js" on a remote machine
-         */
-        var ROOT_URL = "http://localhost:3000";
 
         var hotContainer = document.getElementById('hot');
         var allResults = [];
@@ -62,7 +58,7 @@
             $('#scrap-button').attr('disabled', 'disabled');
             $('#scrap-button').text('Scraping en cours')
 
-            $.post(ROOT_URL + "/scrap", {
+            $.post("/scrap", {
                 'societe': $('#societe-url').val(),
                 'infogreffe': $('#infogreffe-url').val()
             }).done(function (res) {
@@ -70,8 +66,10 @@
                 $('#scrap-button').text('Scraper !');
 
                 allResults.push(res);
+                console.log(res);
 
-                if (!hot) {
+                //if (!hot) {
+                if(true) {
                     var header = [];
                     var row = [];
 
@@ -80,15 +78,69 @@
                         row.push(n);
                     });
 
+                    var filter = {
+                        'name': 'Nom entreprise',
+                        'denomination': 'Dénomination officielle',
+                        'null': 'Site WEB',
+                        'null2': 'Domaine (UTC)',
+                        'null3': 'PDG (UTCéen)',
+                        'null4': 'Poste de l\'UTCéen',
+                        'null5': 'Email UTCéen',
+                        'Date création': 'Date de création',
+                        'Date radiation': 'Date de radiation',
+                        'null6': 'Rachat par (si applicable)',
+                        'null7': 'Site WEB acheteur (si applicable)',
+                        'null8': 'Type',
+                        'null9': 'Nombre de brevets',
+                        'null10': 'Source',
+                        'null11': 'Description',
+                        'Siège social': 'Adresse (siège)',
+                        'Code Postal': 'Code Postal',
+                        'Ville': 'Ville',
+                        'siren': 'SIREN',
+                        'siret': 'SIRET',
+                        'trancheEmployes': 'Tranche d\'employés',
+                        'capitalSocial': 'Capital social',
+                        'Forme juridique': 'Forme juridique',
+                        'Code NAF': 'Code NAF',
+                        'Activité': 'Activité',
+                        'societe-url': 'Lien societe.com',
+                        'infogreffe-url': 'Lien Infogreffe',
+                    };
+
+
+                    var filteredHeader = [];
+                    var filteredRow = [];
+
+                    _.forEach(filter, function (title, key) {
+                        filteredHeader.push(title);
+                        if (key == 'name') {
+                            filteredRow.push(res['denomination']);
+                        } else if (key == 'infogreffe-url') {
+                            filteredRow.push($('#infogreffe-url').val());
+                        } else if (key == 'societe-url') {
+                            filteredRow.push($('#societe-url').val());
+                        } else {
+                            filteredRow.push(res[key] || '');
+                        }
+                    });
+
                     var data = [];
-                    data.push(header);
-                    data.push(row);
+                    if (true) { // TODO : mettre en place le choix de mise en forme par l'utilisateur
+                        data.push(filteredHeader);
+                        data.push(filteredRow);
+
+                    } else {
+                        data.push(header);
+                        data.push(row);
+                    }
                     hot = new Handsontable(
                             hotContainer,
                             {
                                 data: data,
-                                minSpareRows: 1,
+                                minSpareRows: 0,
                                 colHeaders: true,
+                                rowHeaders: true,
                                 contextMenu: true
                             });
                 } else {
