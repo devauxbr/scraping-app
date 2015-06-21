@@ -19,7 +19,7 @@ After processing all the available information will appear in a Handsontable vie
 
 ### How does it work ?
 
-The interface (index.html) is a static page that you can access from anywhere you want, and containing javascript code making AJAX call to the server.
+The interface (index.html) contains javascript code making AJAX call to the server side.
 
 The server is an [express.js](http://expressjs.com/) app that retrieves the two URLs from the front-end client, and uses [request](https://www.npmjs.com/package/request), [jsdom](https://www.npmjs.com/package/jsdom) and [jQuery](https://jquery.com/) to load the pages and scrap the relevant content.
 
@@ -51,15 +51,7 @@ $ bower install
 $ node app.js
 ```
 
-Open _index.html_ from your disk with your brother.
-
-### Install on a server
-
-- Do all the step of _Install locally_
-- Makes your index.html accessible from the web, with an [Apache Server](http://httpd.apache.org/) for example.
-- In `index.html` change the value of `ROOT_URL` on **line 51** from `http://localhost:3000` to `http://[YOUR_SERVER_IP]:3000`.
-- Access the app from your browser !
-
+Open [http://localhost:3000](http://localhost:3000) in your brother.
 
 If you want to keep the server running, install [forever](https://github.com/foreverjs/forever) :
 ```sh
